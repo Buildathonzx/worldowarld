@@ -1,5 +1,4 @@
 'use client';
-import type { Metadata } from "next";
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -13,11 +12,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Gaming Dashboard",
-  description: "A gaming dashboard UI",
-};
 
 const theme = createTheme({
   palette: {

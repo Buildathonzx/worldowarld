@@ -7,6 +7,7 @@ import {
   IconButton, useTheme, Badge 
 } from '@mui/material';
 import { Search, Notifications, Games, Timeline, Star } from '@mui/icons-material';
+import { metadata } from './metadata';
 
 export default function Home() {
   return (
