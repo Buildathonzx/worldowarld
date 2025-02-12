@@ -1,4 +1,6 @@
+'use client';
 import type { Metadata } from "next";
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +19,39 @@ export const metadata: Metadata = {
   description: "A gaming dashboard UI",
 };
 
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#ff4655',
+    },
+    background: {
+      default: '#1a1a1a',
+      paper: '#2c2c2c',
+    },
+  },
+  typography: {
+    fontFamily: geistSans.style.fontFamily,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          textTransform: 'none',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+        },
+      },
+    },
+  },
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +60,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#2c2c2c] text-white`}>
-        {children}
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
