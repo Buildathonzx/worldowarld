@@ -11,10 +11,10 @@ import { metadata } from './metadata';
 
 export default function Home() {
   return (
-    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
-      <AppBar position="static" color="transparent" elevation={0}>
+    <Box sx={{ minHeight: '100vh', position: 'relative', zIndex: 1 }}>
+      <AppBar position="static" elevation={0}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+          <Typography variant="h5" className="gradient-text" sx={{ fontWeight: 'bold' }}>
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -60,13 +60,22 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <Card sx={{ 
-                bgcolor: 'background.paper',
                 backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("/game-banner.jpg")',
                 backgroundSize: 'cover',
-                color: 'white',
-                mb: 3
+                position: 'relative',
+                overflow: 'hidden',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(135deg, rgba(156,39,176,0.4) 0%, rgba(106,27,154,0.4) 100%)',
+                  zIndex: 1
+                }
               }}>
-                <CardContent sx={{ p: 4 }}>
+                <CardContent sx={{ position: 'relative', zIndex: 2, p: 4 }}>
                   <Typography variant="h4" gutterBottom>
                     WorldoWorld Duty
                   </Typography>
@@ -102,8 +111,26 @@ export default function Home() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <Card sx={{ height: '100%' }}>
+                    <Card sx={{
+                      height: '100%',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: '-100%',
+                        width: '100%',
+                        height: '100%',
+                        background: 'linear-gradient(90deg, transparent, rgba(156,39,176,0.2), transparent)',
+                        transition: 'all 0.5s',
+                      },
+                      '&:hover::after': {
+                        left: '100%',
+                      }
+                    }}>
                       <CardContent>
                         <Typography variant="h6" gutterBottom>
                           {game}
@@ -125,7 +152,11 @@ export default function Home() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <Card>
+              <Card sx={{
+                background: 'rgba(41, 37, 56, 0.9)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(156,39,176,0.3)',
+              }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     Gaming Statistics
